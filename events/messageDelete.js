@@ -46,13 +46,12 @@ client.on('messageDelete', async message => {
 client.on('messageDelete', async message => {
     try {
         if(message.author.bot) return
-        if(message.mentions.users.first()){
+        if(message.mentions.users.first() || message.mentions.roles.first() || message.content.toLowerCase().includes("@everyone") || message.content.toLowerCase().includes("@here")){
             let psnipes = client.psnipes.get(message.channel.id) || []
             if(psnipes.length > 19) psnipes = psnipes.slice(0, 19)
         
             psnipes.unshift({
                 msg: message,
-                ping: message.mentions.users.first(),
                 img: message.attachments.first()?.proxyURL || null,
                 time: Date.now()
             })

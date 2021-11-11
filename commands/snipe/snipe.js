@@ -43,6 +43,10 @@ module.exports = {
                 .setImage(img)
                 .setFooter(`${moment(time).fromNow()} | ${snipe + 1}/${snipes.length}`)
                 .setColor('RANDOM')
+
+                if(msg.mentions.repliedUser){
+                    embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
+                }
     
                 return await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
             } else {
@@ -52,6 +56,10 @@ module.exports = {
                 .setImage(img)
                 .setFooter(`${moment(time).fromNow()} | ${snipe + 1}/${snipes.length}`)
                 .setColor('RANDOM')
+
+                if(msg.mentions.repliedUser){
+                    embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
+                }
     
                 if(type){
                     if(!type.startsWith('image')){

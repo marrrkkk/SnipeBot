@@ -27,17 +27,18 @@ module.exports = {
     
             if(!target) return await message.channel.send(`There's only ${psnipes.length} messages to snipe`)
     
-            const { msg, time, img, ping } = target
-    
-            if(ping.id !== message.author.id) return await message.channel.send("There's nothing to snipe")
+            const { msg, time, img } = target
     
             const embed = new MessageEmbed()
             .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
-            .addField('Mention', `${ping}`)
-            .addField('Content', `${msg.content}` || '[no text]')
+            .setDescription(`${msg.content}` || '[no text]')
             .setImage(img)
             .setFooter(`${moment(time).fromNow()} | ${psnipe + 1}/${psnipes.length}`)
             .setColor('RANDOM')
+
+            if(msg.mentions.repliedUser){
+                embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
+            }
     
             await message.channel.send({ embeds: [embed] })
         } catch (error) {
