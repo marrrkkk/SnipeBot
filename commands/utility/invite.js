@@ -1,4 +1,4 @@
-const { Client, Message, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
+const { Client, Message, MessageActionRow, MessageButton } = require('discord.js')
 
 module.exports = {
     name: 'invite',
@@ -23,13 +23,7 @@ module.exports = {
             .setURL('https://discord.gg/WEZkASkcH8')
             .setStyle('LINK')
         )
-        const embed = new MessageEmbed()
-        .setTitle('<:plus:897118884539277383> Want to invite Snipe?')
-        .setDescription('Invite me by clicking the button below')
-        .addField('🔗 Additional links', '[Website](https://snipebot.carrd.co/)\n[Vote for Snipe](https://top.gg/bot/884249240090607637/vote)\n[~~Invite Snipe 2~~](https://discord.com/oauth2/authorize?client_id=890221078532726814&scope=applications.commands+bot&permissions=8)')
-        .setThumbnail(client.user.displayAvatarURL())
-        .setColor('BLURPLE')
 
-        message.channel.send({ embeds: [embed], components: [row] }).catch(e => console.log(e))
+        message.channel.send({ content: 'Invite **Snipe** to your server!', components: [row] }).catch(e => console.log(e))
     }
 }

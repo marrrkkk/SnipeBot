@@ -350,7 +350,7 @@ module.exports = {
         .setAuthor('All Commands', client.user.displayAvatarURL())
         .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
         .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
-        .addField('__Config Commands__', '*setlog, moderation, setprefix*')
+        .addField('__Config Commands__', '*config log, config prefix, moderation*')
         .setColor('BLURPLE')
 
         let msg = await message.channel.send({ embeds: [embed], components: [row, row2] })
@@ -588,19 +588,19 @@ module.exports = {
                                 .setPlaceholder('Commands...')
                                 .addOptions([
                                     {
-                                        label: 'setlog',
+                                        label: 'config log',
                                         description: 'Set the channel for message logging',
                                         value: 'setlog'
+                                    },
+                                    {
+                                        label: 'config prefix',
+                                        description: 'Change the bot prefix',
+                                        value: 'prefix'
                                     },
                                     {
                                         label: 'moderation',
                                         description: 'Moderate a user (kick or ban)',
                                         value: 'mod'
-                                    },
-                                    {
-                                        label: 'setprefix',
-                                        description: 'Change the bot prefix',
-                                        value: 'prefix'
                                     }
                                 ])
                             )
@@ -635,7 +635,23 @@ module.exports = {
                         row.components[0].setPlaceholder('Slash')
                         const embed = new MessageEmbed()
                         .setAuthor('Help Menu', client.user.displayAvatarURL())
-                        .addField('__Slash Commands__', '*snipe, editsnipe, usersnipe, usereditsnipe, pingsnipe, filesnipe, reactsnipe, embedsnipe, stats, about, avatar, help, invite, whois*')
+                        .addOptions([
+                            {
+                                label: 'config log',
+                                description: 'Set the channel for message logging',
+                                value: 'setlog'
+                            },
+                            {
+                                label: 'config prefix',
+                                description: 'Change the bot prefix',
+                                value: 'prefix'
+                            },
+                            {
+                                label: 'moderation',
+                                description: 'Moderate a user (kick or ban)',
+                                value: 'mod'
+                            }
+                        ])
                         .setColor('BLURPLE')
     
                         await msg.edit({ embeds: [embed], components: [row] })
@@ -647,7 +663,7 @@ module.exports = {
                             .setAuthor('All Commands', client.user.displayAvatarURL())
                             .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
                             .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
-                            .addField('__Config Commands__', '*setlog, moderation, setprefix*')
+                            .addField('__Config Commands__', '*config log, config prefix, moderation*')
                             .setColor('BLURPLE')
                     
                             await msg.edit({ embeds: [embed], components: [row] })
