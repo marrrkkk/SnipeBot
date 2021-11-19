@@ -2,7 +2,6 @@ const { Client, Message } = require('discord.js')
 
 module.exports = {
     name: 'purge',
-    aliases: ['clear'],
 
     /**
      * @param {Client} client
@@ -14,10 +13,28 @@ module.exports = {
         if(!message.guild.me.permissions.has("MANAGE_MESSAGES")) return message.reply('Missing Permission: `MANAGE_MESSAGES`')
         if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.reply('Missing Permission: `MANAGE_MESSAGES`')
 
-        if(!args[0]) return message.reply('Please provide a valid amount')
-        if(isNaN(args[0])) return message.reply('Not a valid number')
-        if(parseInt(args[0] > 99)) return message.reply("Max amount is `99`")
+        const member = message.mentions.members.first()
+        const messages = message.channel.messages.fetch()
 
-        await message.channel.bulkDelete(parseInt(args[0]) + 1).catch(err => console.log(err))
+        try {
+            if(member){
+                const amount = args[1]
+                const userMessages = (await messages).filter(m => m.author.id === message.author.id)
+                let deleted = 0
+                await userMessages.forEach(async (msg) => {
+                    if(deleted >= amount) return
+                    await msg.delete()
+                    await deleted++
+                })
+            } else {
+                const amount = args[0]
+                if(!amount) return message.reply('Please provide an amount')
+                if(isNaN(amount)) return message.reply('Please provide a valid amount')
+                if(amount > 99) return message.reply('Max amount is `99`')
+                await message.channel.bulkDelete(parseInt(args[0]) + 1)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

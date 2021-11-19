@@ -24,7 +24,7 @@ client.on('guildCreate', async guild => {
 
 client.on('guildCreate', async guild => {
     try {
-        const limit = guild.members.cache.filter(m => !m.bot).size
+        const limit = client.guilds.cache.size
         const owner = guild.ownerId
         let prefix = db.fetch(`prefix_${guild.id}`)
         if(prefix === null) prefix = 's!'
@@ -37,10 +37,14 @@ client.on('guildCreate', async guild => {
             ) channelTosend = channel
         })
 
-        if(limit < 2){
-            await client.users.cache.get(owner).send(`Sorry I had to leave your server **${guild.name}**\n**Reason:** Atleast have 2 members in your server`).catch(e => console.log(e))
+        if(limit > 95){
             const row = new MessageActionRow()
             .addComponents(
+                new MessageButton()
+                .setLabel('Add Snipe 6')
+                .setURL('https://discord.com/oauth2/authorize?client_id=910905182194368522&scope=applications.commands+bot&permissions=8')
+                .setStyle('LINK'),
+                
                 new MessageButton()
                 .setLabel('Support Server')
                 .setURL('https://discord.gg/WEZkASkcH8')
@@ -48,9 +52,10 @@ client.on('guildCreate', async guild => {
             )
             const embed = new MessageEmbed()
             .setAuthor(client.user.tag, client.user.displayAvatarURL())
-            .setDescription(`Sorry I had to leave your server **${guild.name}**\n**Reason:** At least have 2 members in your server`)
+            .setDescription(`Unfortunately, **Snipe** has reach it's limit of 100 servers, So I had to leave **${guild.name}**\n\nYou can invite [Snipe 6](https://discord.com/oauth2/authorize?client_id=910905182194368522&scope=applications.commands+bot&permissions=8), Another version of **Snipe** with the same commands`)
             .setColor('#2f3136')
 
+            await client.users.cache.get(owner).send({ embeds: [embed], components: [row] }).catch(e => console.log(e))
             await channelTosend.send({ embeds: [embed], components: [row] }).catch(e => console.log(e))
             await guild.leave()
         } else {
