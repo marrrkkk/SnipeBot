@@ -80,6 +80,10 @@ module.exports = {
                                     .setImage(img)
                                     .setFooter(`${moment(time).fromNow()} | ${i + 1}/${snipes.length}`)
                                     .setColor('RANDOM')
+
+                                    if(msg.mentions.repliedUser){
+                                        embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
+                                    }
                             
                                     if(!url){
                                         await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))

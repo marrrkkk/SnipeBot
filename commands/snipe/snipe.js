@@ -19,7 +19,8 @@ module.exports = {
         ])) return message.channel.send('Missing Permission: `EMBED_LINKS`')
 
         try {
-            const snipes = client.snipes.get(message.channel.id)
+            const channel = message.mentions.channels.first() || message.channel
+            const snipes = client.snipes.get(channel.id)
             if(!snipes) return await message.channel.send("There's nothing to snipe")
     
             const snipe = +args[0] - 1 || 0
@@ -44,8 +45,14 @@ module.exports = {
                 .setFooter(`${moment(time).fromNow()} | ${snipe + 1}/${snipes.length}`)
                 .setColor('RANDOM')
 
+                //Check if reply
                 if(msg.mentions.repliedUser){
                     embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
+                }
+
+                //Check if from another channel
+                if(channel.id !== message.channel.id){
+                    embed.addField('Channel:', `${channel}`)
                 }
     
                 return await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
