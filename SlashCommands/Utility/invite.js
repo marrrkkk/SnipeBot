@@ -26,14 +26,8 @@ module.exports = {
                 .setURL('https://discord.gg/WEZkASkcH8')
                 .setStyle('LINK')
             )
-            const embed = new MessageEmbed()
-            .setTitle('<:plus:897118884539277383> Want to invite Snipe?')
-            .setDescription('Invite me by clicking the button below')
-            .addField('🔗 Additional links', '[Github](https://github.com/yayeen)\n[Vote for Snipe](https://top.gg/bot/884249240090607637/vote)\n[Invite Snipe 2](https://discord.com/oauth2/authorize?client_id=890221078532726814&scope=applications.commands+bot&permissions=8)')
-            .setThumbnail(client.user.displayAvatarURL())
-            .setColor('BLURPLE')
 
-            await interaction.editReply({ embeds: [embed], components: [row] })
+            await interaction.editReply({ content: 'Invite **Snipe** to your server!', components: [row] })
         } catch (error) {
             console.log(error)
         }
