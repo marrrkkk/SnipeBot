@@ -72,27 +72,8 @@ module.exports = {
             ]
         },
         {
-            name: 'user-delete',
+            name: 'aim',
             description: 'Snipe recently deleted message by specified user',
-            type: 1,
-            options: [
-                {
-                    name: 'user',
-                    description: 'Target',
-                    type: 6,
-                    required: true
-                },
-                {
-                    name: 'position',
-                    description: 'Optional',
-                    type: 'INTEGER',
-                    required: false
-                }
-            ]
-        },
-        {
-            name: 'user-edit',
-            description: 'Snipe recently edited message by specified user',
             type: 1,
             options: [
                 {
@@ -359,29 +340,35 @@ module.exports = {
     
                 await interaction.editReply({ content: `Original message from: **${msg.author.username}** - <t:${Math.floor(time / 1000)}:R>`, embeds: [snipe] })
 
-                //User Delete
-            } else if (option === 'user-delete'){
+                //aim
+            } else if (option === 'aim'){
                 const options = interaction.options._hoistedOptions
                 const user = (options.find((e) => e.name === 'user') && options.find((e) => e.name === 'user').member.user) || interaction.user
                 const member = (options.find((e) => e.name === 'user') && options.find((e) => e.name === 'user').member) || interaction.user
     
-                const usnipes = client.usnipes.get(interaction.channel.id)
-                if(!usnipes) return await interaction.editReply("There's nothing to snipe")
+                const usnipes = client.usnipes.get(member.id)
+                if(!usnipes) return await interaction.editReply(`**${member.displayName}** does not have any deleted messages in my history.`)
     
                 let num = interaction.options.getInteger("position")
                 if(!num) num = 1
                 const usnipe = +num - 1 || 0
                 const target = usnipes[usnipe]
         
-                if(!target) return await interaction.editReply("There's nothing to snipe")
+                if(usnipe > usnipes.length) return await message.channel.send(`There's only ${usnipes.length} message to snipe`)
+                if(!target){
+                    const embed = new MessageEmbed()
+                    .setDescription('This snipe has been removed')
+                    .setColor('#2f3136')
         
+                    return await interaction.editReply({ embeds: [embed] })
+                }
+
                 const { msg, time, img } = target
-        
-                if(msg.author.id !== member.id) return await interaction.editReply("There's nothing to snipe")
         
                 const embed = new MessageEmbed()
                 .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
                 .setDescription(msg.content || '[no text]')
+                .addField('Channel:', `${msg.channel}`)
                 .setImage(img)
                 .setFooter(`${moment(time).fromNow()} | ${usnipe + 1}/${usnipes.length}`)
                 .setColor('RANDOM')
@@ -391,44 +378,6 @@ module.exports = {
                 }
     
                 await interaction.editReply({ embeds: [embed] })
-
-                //User Edit
-            } else if (option === 'user-edit'){
-                const options = interaction.options._hoistedOptions
-                const user = (options.find((e) => e.name === 'user') && options.find((e) => e.name === 'user').member.user) || interaction.user
-                const member = (options.find((e) => e.name === 'user') && options.find((e) => e.name === 'user').member) || interaction.user
-    
-                const uesnipes = client.uesnipes.get(interaction.channel.id)
-                if(!uesnipes) return await interaction.editReply("There's nothing to snipe")
-    
-                let num = interaction.options.getInteger("position")
-                if(!num) num = 1
-                const uesnipe = +num - 1 || 0
-                const target = uesnipes[uesnipe]
-        
-                if(!target) return await interaction.editReply("There's nothing to snipe")
-        
-                const { oldmsg, newmsg, time, img } = target
-    
-                if(oldmsg.author.id !== user.id) return await interaction.editReply("There's nothing to snipe")
-
-                const row = new MessageActionRow()
-                .addComponents(
-                    new MessageButton()
-                    .setLabel('Context')
-                    .setURL(newmsg.url)
-                    .setStyle('LINK')
-                )
-        
-                const embed = new MessageEmbed()
-                .setAuthor(oldmsg.author.tag, oldmsg.author.displayAvatarURL())
-                .addField('Before', `${oldmsg.content}` || '[no text]')
-                .addField('After', `${newmsg.content}` || '[no text]')
-                .setImage(img)
-                .setFooter(`${moment(time).fromNow()} | ${uesnipe + 1}/${uesnipes.length}`)
-                .setColor('RANDOM')
-    
-                await interaction.editReply({ embeds: [embed], components: [row] })
 
                 //Reaction
             } else if (option === 'reaction'){
