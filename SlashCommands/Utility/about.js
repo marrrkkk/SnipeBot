@@ -1,5 +1,5 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js')
-const os = require('os-utils')
+const { color } = require('../../config.json')
 
 module.exports = {
     name: 'about',
@@ -26,7 +26,7 @@ module.exports = {
             .addField("Stats", `<:home:902187467128573952> ${client.guilds.cache.size}/100 servers\n<:1120personadd:902187439437807666> ${client.users.cache.size} users`)
             .addField("Info", `<:discordjs:902079373509791804> Discord.js \`v13.1.0\`\n<:js:902080645482840094> Node.js \`v16.6.1\``)
             .addField('Uptime', `\`\`\`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds\`\`\``)
-            .setColor('BLURPLE')
+            .setColor(color)
 
             await interaction.editReply({ embeds: [about] })
         } catch (error) {

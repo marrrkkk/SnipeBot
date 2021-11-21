@@ -1,4 +1,5 @@
 const { Client, CommandInteraction, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
+const { color } = require('../../config.json')
 
 module.exports = {
     name: 'vote',
@@ -22,7 +23,7 @@ module.exports = {
         .setDescription('Vote available on [Top.gg](https://top.gg/bot/884249240090607637/vote)')
         .setThumbnail(client.user.displayAvatarURL())
         .setFooter('You can vote every 12hrs')
-        .setColor('BLUE')
+        .setColor(color)
 
         await message.channel.send({ embeds: [embed], components: [row] }).catch(e => console.log(e))
     }

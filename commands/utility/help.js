@@ -1,9 +1,10 @@
 const { Client, Message, MessageActionRow, MessageSelectMenu, MessageEmbed, MessageButton} = require('discord.js')
 const db = require('quick.db')
+const { color } = require('../../config.json')
 
 module.exports = {
     name: 'help',
-    aliases: 'h',
+    aliases: ['h'],
 
     /**
      * @param {Client} client
@@ -20,70 +21,70 @@ module.exports = {
         .addField('__snipe__', '```Retrieve recently deleted messages including image and files```')
         .addField('Usage', `${prefix}s\n${prefix}snipe\n${prefix}snipe 3`, true)
         .addField('Aliases', '*s*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const esnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__editsnipe__', '```Retrieve recently edited messages```')
         .addField('Usage', `${prefix}es\n${prefix}esnipe\n${prefix}editsnipe 5`, true)
         .addField('Aliases', '*es*, *esnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const usersnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__usersnipe__', '```Retrieve recently deleted messages from the mentioned member```')
         .addField('Usage', `${prefix}us \`@user\`\n${prefix}usnipe \`@user\`\n${prefix}usersnipe \`@user\` 4`, true)
         .addField('Aliases', '*us*, *usnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const useresnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__usereditsnipe__', '```Retrieve recently edited messages from the mentioned member```')
         .addField('Usage', `${prefix}ues \`@user\`\n${prefix}uesnipe \`@user\`\n${prefix}usereditsnipe \`@user\` 2`, true)
         .addField('Aliases', '*ues*, *uesnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const botsnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__botsnipe__', '```Retrieve recently deleted messages by the bots incuding embeds```')
         .addField('Usage', `${prefix}bs\n${prefix}bsnipe\n${prefix}botsnipe 7`, true)
         .addField('Aliases', '*bs*, *bsnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const botesnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__boteditsnipe__', '```Retrieve recently edited messages by the bots```')
         .addField('Usage', `${prefix}bes \`@user\`\n${prefix}besnipe \`@user\`\n${prefix}boteditsnipe \`@user\` 3`, true)
         .addField('Aliases', '*ues*, *besnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const psnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__pingsnipe__', '```Retrieve recently deleted messages that includes user or role mentions```')
         .addField('Usage', `${prefix}ps\n${prefix}psnipe\n${prefix}pingsnipe 9`, true)
         .addField('Aliases', '*ps*, *psnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const fsnipe = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__filesnipe__', '```Retrieve recently deleted messages that includes file or images```')
         .addField('Usage', `${prefix}fs\n${prefix}fsnipe\n${prefix}filesnipe 8`, true)
         .addField('Aliases', '*fs*, *fsnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const ems = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__embedsnipe__', '```Retrieve recently deleted embeds```')
         .addField('Usage', `${prefix}ems\n${prefix}emsnipe\n${prefix}embedsnipe 8`, true)
         .addField('Aliases', '*ems*, *emsnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const react = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
         .addField('__reactsnipe__', '```Retrieve recently removed reaction from a message```')
         .addField('Usage', `${prefix}rs\n${prefix}rsnipe\n${prefix}reactsnipe 8`, true)
         .addField('Aliases', '*rs*, *rsnipe*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const rms = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
@@ -91,7 +92,7 @@ module.exports = {
         .addField('Usage', `${prefix}rms\n${prefix}rmsnipe\n${prefix}removesnipe 8`, true)
         .addField('Aliases', '*rms*, *rmsnipe*', true)
         .setFooter('Require: MANAGE MESSAGES')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const clear = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
@@ -99,7 +100,7 @@ module.exports = {
         .addField('Usage', `${prefix}cs\n${prefix}csnipe\n${prefix}clearsnipe`, true)
         .addField('Aliases', '*cs*, *csnipe*', true)
         .setFooter('Require: ADMINISTRATOR')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const max = new MessageEmbed()
         .setAuthor('Snipe Commands', client.user.displayAvatarURL())
@@ -107,64 +108,56 @@ module.exports = {
         .addField('Usage', `${prefix}ms\n${prefix}xsnipe\n${prefix}maxsnipe`, true)
         .addField('Aliases', '*ms*, *xsnipe*', true)
         .setFooter('Require: ADMINISTRATOR')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const about = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__about__', '```Display the information about the bot```')
         .addField('Usage', `${prefix}botinfo\n${prefix}about`, true)
         .addField('Aliases', '*botinfo*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const av = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__avatar__', "```Display given user's avatar```")
         .addField('Usage', `${prefix}av \`@user\`\n${prefix}av \`[User ID]\`\n${prefix}av \`username\`\n${prefix}avatar \`@user\``, true)
         .addField('Aliases', '*av*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const help = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__help__', '```Show the help menu or by each command```')
         .addField('Usage', `${prefix}h\n${prefix}help \`<command>\`\n${prefix}help`, true)
         .addField('Aliases', '*h*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const invite = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__invite__', '```Get an invite for the bot```')
         .addField('Usage', `${prefix}invite`, true)
         .addField('Aliases', '*invite*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const ping = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__ping__', "```Check for bot's and api latency```")
         .addField('Usage', `${prefix}ping`, true)
         .addField('Aliases', '*ping*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const whois = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__userinfo__', '```Display the information about the user```')
         .addField('Usage', `${prefix}whois \`@user\`\n${prefix}whois \`[User ID]\`\n${prefix}whois \`username\`\n${prefix}userinfo \`@user\``, true)
         .addField('Aliases', '*whois*', true)
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const vote = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
         .addField('__vote__', '```Vote for Snipe on top.gg```')
         .addField('Usage', `${prefix}vote`, true)
         .addField('Aliases', '*vote*', true)
-        .setColor('BLURPLE')
-
-        const log = new MessageEmbed()
-        .setAuthor('Config Commands', client.user.displayAvatarURL())
-        .addField('__setlog__', '```Set the channel for message logging```')
-        .addField('Usage', `${prefix}setlog \`enable\`\n${prefix}setlog \`disable\``, true)
-        .addField('Aliases', '*setlog*', true)
-        .setFooter('Require: ADMINISTRATOR')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const mod = new MessageEmbed()
         .setAuthor('Config Commands', client.user.displayAvatarURL())
@@ -172,7 +165,7 @@ module.exports = {
         .addField('Usage', `${prefix}mod \`@user\`\n${prefix}mod \`[User ID]\`\n${prefix}mod \`username\`\n${prefix}moderate \`@user\``, true)
         .addField('Aliases', '*mod*', true)
         .setFooter('Require: KICK/BAN MEMBERS')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const purge = new MessageEmbed()
         .setAuthor('Utility Commands', client.user.displayAvatarURL())
@@ -180,14 +173,15 @@ module.exports = {
         .addField('Usage', `${prefix}purge\n${prefix}purge 10`, true)
         .addField('Aliases', '*purge*', true)
         .setFooter('Require: MANAGE MESSAGES')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         const setprefix = new MessageEmbed()
         .setAuthor('Config Commands', client.user.displayAvatarURL())
-        .addField('__setprefix__', '```Change the bot prefix```')
-        .addField('Usage', `${prefix}setprefix \`<prefix>\``, true)
-        .addField('Aliases', '*setprefix*', true)
-        .setColor('BLURPLE')
+        .addField('__config__', '```Change the bot settings```')
+        .addField('Usage', `${prefix}config prefix \`<newprefix>\`\n${prefix}config log \`<#channel>\``, true)
+        .addField('Aliases', '*settings*', true)
+        .setFooter('Require: ADMINISTRATOR')
+        .setColor(color)
 
         if(command === 'snipe' || command === 's'){
             return await message.channel.send({ embeds: [snipe] })
@@ -351,7 +345,7 @@ module.exports = {
         .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
         .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
         .addField('__Config Commands__', '*config log, config prefix, moderation*')
-        .setColor('BLURPLE')
+        .setColor(color)
 
         let msg = await message.channel.send({ embeds: [embed], components: [row, row2] })
         const collector = msg.createMessageComponentCollector({ componentType: 'SELECT_MENU'})
@@ -442,7 +436,7 @@ module.exports = {
                             const embed = new MessageEmbed()
                             .setAuthor('Help Menu', client.user.displayAvatarURL())
                             .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
-                            .setColor('BLURPLE')
+                            .setColor(color)
                     
                             let msg4 = await msg.edit({ embeds: [embed], components: [row, row5] })
                             const collector = msg4.createMessageComponentCollector({ componentType: 'SELECT_MENU'})
@@ -539,7 +533,7 @@ module.exports = {
                             const embed = new MessageEmbed()
                             .setAuthor('Help Menu', client.user.displayAvatarURL())
                             .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
-                            .setColor('BLURPLE')
+                            .setColor(color)
     
                             let msg2 = await msg.edit({ embeds: [embed], components: [row, row3] })
                             const collector = msg2.createMessageComponentCollector({ componentType: 'SELECT_MENU'})
@@ -588,13 +582,8 @@ module.exports = {
                                 .setPlaceholder('Commands...')
                                 .addOptions([
                                     {
-                                        label: 'config log',
-                                        description: 'Set the channel for message logging',
-                                        value: 'setlog'
-                                    },
-                                    {
-                                        label: 'config prefix',
-                                        description: 'Change the bot prefix',
+                                        label: 'config',
+                                        description: 'Change the bot settings',
                                         value: 'prefix'
                                     },
                                     {
@@ -607,8 +596,8 @@ module.exports = {
                             const embed = new MessageEmbed()
                             .setAuthor('Help Menu', client.user.displayAvatarURL())
                             .setDescription(`**Log:** ${logs} **|** **Prefix:** ${prefix}`)
-                            .addField('__Config Commands__', '*setlog, moderation, setprefix*')
-                            .setColor('BLURPLE')
+                            .addField('__Config Commands__', '*config, moderate*')
+                            .setColor(color)
     
                             let msg3 = await msg.edit({ embeds: [embed], components: [row, row4] })
                             const collector = msg3.createMessageComponentCollector({ componentType: 'SELECT_MENU'})
@@ -616,12 +605,10 @@ module.exports = {
                                 try {
                                     const value = d.values[0]
                                     if(d.user.id === message.author.id){
-                                        if(value === 'setlog'){
-                                            await msg3.edit({ embeds: [log] })
+                                        if(value === 'prefix'){
+                                            await msg3.edit({ embeds: [setprefix] })
                                         } else if(value === 'mod'){
                                             await msg3.edit({ embeds: [mod] })
-                                        } else if(value === 'prefix'){
-                                            await msg3.edit({ embeds: [setprefix] })
                                         }
                                     }
                                 } catch (error) {
@@ -635,24 +622,8 @@ module.exports = {
                         row.components[0].setPlaceholder('Slash')
                         const embed = new MessageEmbed()
                         .setAuthor('Help Menu', client.user.displayAvatarURL())
-                        .addOptions([
-                            {
-                                label: 'config log',
-                                description: 'Set the channel for message logging',
-                                value: 'setlog'
-                            },
-                            {
-                                label: 'config prefix',
-                                description: 'Change the bot prefix',
-                                value: 'prefix'
-                            },
-                            {
-                                label: 'moderation',
-                                description: 'Moderate a user (kick or ban)',
-                                value: 'mod'
-                            }
-                        ])
-                        .setColor('BLURPLE')
+                        .addField('__Slash Commands__', '*snipe delete, snipe edit, snipe user-delete, snipe user-edit, snipe ping, snipe file, snipe react, snipe embed, stats, about, avatar, help, invite, whois*')
+                        .setColor(color)
     
                         await msg.edit({ embeds: [embed], components: [row] })
                         }
@@ -664,7 +635,7 @@ module.exports = {
                             .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
                             .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
                             .addField('__Config Commands__', '*config log, config prefix, moderation*')
-                            .setColor('BLURPLE')
+                            .setColor(color)
                     
                             await msg.edit({ embeds: [embed], components: [row] })
                         }

@@ -2,6 +2,7 @@ const client = require('../index')
 const { MessageEmbed, MessageAttachment } = require('discord.js')
 const db = require('quick.db')
 
+//snipe
 client.on('messageDelete', async message => {
     try {
         if(message.author.bot) return
@@ -22,6 +23,7 @@ client.on('messageDelete', async message => {
     }
 })
 
+//botsnipe
 client.on('messageDelete', async message => {
     try {
         if(message.author.id === client.user.id) return
@@ -43,6 +45,7 @@ client.on('messageDelete', async message => {
     }
 })
 
+//pingsnipe
 client.on('messageDelete', async message => {
     try {
         if(message.author.bot) return
@@ -63,10 +66,11 @@ client.on('messageDelete', async message => {
     }
 })
 
+//usersnipe
 client.on('messageDelete', async message => {
     try {
         if(message.author.bot) return
-        let usnipes = client.usnipes.get(message.channel.id) || []
+        let usnipes = client.usnipes.get(message.author.id) || []
         if(usnipes.length > 19) usnipes = usnipes.slice(0, 19)
     
         usnipes.unshift({
@@ -75,12 +79,13 @@ client.on('messageDelete', async message => {
             time: Date.now()
         })
     
-        client.usnipes.set(message.channel.id, usnipes)
+        client.usnipes.set(message.author.id, usnipes)
     } catch (error) {
         console.log(error)
     }
 })
 
+//filesnipe
 client.on('messageDelete', async message => {
     try {
         if(message.author.bot) return
@@ -101,6 +106,7 @@ client.on('messageDelete', async message => {
     }
 })
 
+//embedsnipe
 client.on('messageDelete', async message => {
     try {
         if(message.author.id === client.user.id) return
@@ -120,6 +126,7 @@ client.on('messageDelete', async message => {
     }
 })
 
+//messagelog
 client.on('messageDelete', async message => {
     try {
         if(message.author.bot) return
