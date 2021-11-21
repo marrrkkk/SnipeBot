@@ -15,7 +15,6 @@ module.exports = {
             if(!message.member.permissions.has('MANAGE_MESSAGES')) return await message.react('❌')
             const snipes = client.snipes.get(message.channel.id)
             const fsnipes = client.fsnipes.get(message.channel.id)
-            const usnipes = client.usnipes.get(message.channel.id)
             const esnipes = client.esnipes.get(message.channel.id)
     
             if(args[0] === '--files'){
@@ -24,6 +23,9 @@ module.exports = {
                 fsnipes[fsnipe] = null
                 return await message.react('✅')
             } else if(args[0] === '--user'){
+                let user = message.mentions.members.first()
+                if(!user) user = message.author
+                const usnipes = client.usnipes.get(user.id)
                 if(!usnipes) return await message.channel.send("There's nothing to remove")
                 const usnipe = +args[1] - 1 || 0
                 usnipes[usnipe] = null
