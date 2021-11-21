@@ -1,3 +1,4 @@
+![](https://img.shields.io/discord/893698813745823744)<br>![](https://img.shields.io/github/forks/marrrkkk/SnipeBot?style=social)<br>![](https://img.shields.io/github/stars/marrrkkk/SnipeBot?style=social)<br>![](https://img.shields.io/github/watchers/marrrkkk/SnipeBot?style=social)
 # SnipeBot
 Snipe is an advance discord snipe bot that can snipe up to 20 deleted/edited messages including images and files.
 <br>
@@ -13,3 +14,6 @@ Snipe is an advance discord snipe bot that can snipe up to 20 deleted/edited mes
 - Snipe removed reactions
 - Clearsnipe
 - Snipe an specific user
+
+## Help
+If you have problem regarding the bot or need help with the source code, join the [Support Server](https://discord.gg/WEZkASkcH8)
