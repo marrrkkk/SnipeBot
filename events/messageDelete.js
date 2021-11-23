@@ -1,4 +1,5 @@
 const client = require('../index')
+const { emojis } = require('../config.json')
 const { MessageEmbed, MessageAttachment } = require('discord.js')
 const db = require('quick.db')
 
@@ -136,7 +137,7 @@ client.on('messageDelete', async message => {
 
         const embed = new MessageEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL())
-        .setTitle(`<:delete:893700435335065631> Message Deleted`)
+        .setTitle(`${emojis.delete} Message Deleted`)
         .setDescription(`**Author:** ${message.author}\n\n**Channel:** ${message.channel}`)
         .addField('Content', `${message.content || '[no text]'}`)
         .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
@@ -159,9 +160,9 @@ client.on('messageDelete', async message => {
 
         const embed = new MessageEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL())
-        .setTitle(`<:delete:893700435335065631> Message Deleted`)
+        .setTitle(`${emojis.delete} Message Deleted`)
         .setDescription(`**Author:** ${message.author}\n\n**Channel:** ${message.channel}`)
-        .addField('Content', `${message.content || '[file] <:fileupload:902027655862427668>'}`)
+        .addField('Content', `${message.content || `[file] ${emojis.file}`}`)
         .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
         .setFooter(`User ID: ${message.author.id}`)
         .setTimestamp()

@@ -1,4 +1,5 @@
 const client = require('../index')
+const { emojis } = require('../config.json')
 const { MessageEmbed, MessageAttachment } = require('discord.js')
 const db = require('quick.db')
 
@@ -68,7 +69,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
         if(channel === null) return
         const embed = new MessageEmbed()
         .setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL())
-        .setTitle(`<:edit:889888701855969281> Message Updated`)
+        .setTitle(`${emojis.edit} Message Updated`)
         .setDescription(`**Author:** ${oldMessage.author}\n\n**Channel:** ${oldMessage.channel}`)
         .addField('Before', `${oldMessage.content}` || '[file]')
         .addField('After', `${newMessage.content}` || '[file]')

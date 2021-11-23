@@ -1,5 +1,32 @@
 {
-    "token": "ODk2OTg0NzA3MDMwNDgyOTQ0.YWPEGw.oGddqEb7nLa7q1UCRTFPPIsjPd4",
+    "token": "ODk2OTg0NzA3MDMwNDgyOTQ0.YWPEGw.osvJgApWi2iyxv3vp_fOBngq_lM",
     "ownerID": "814406096022011934",
-    "color": "BLURPLE"
+    "color": "BLURPLE",
+    "emojis": {
+        "cross": "<:cross:893700435616100402>",
+        "check": "<:check:893700435632873532>",
+        "home": "<:home:902187467128573952>",
+        "add": "<:personadd:902187439437807666>",
+        "djs": "<:discordjs:902079373509791804>",
+        "js": "<:js:902080645482840094>",
+        "comment": "<:comment:902027656097300491>",
+        "globe": "<:globe:902027655057141811>",
+        "topgg": "<:topgg:903662068052410450>",
+        "online": "<:online:893700435674808350>",
+        "idle": "<:idle:899161368018714634>",
+        "dnd": "<:dnd:899161367674761236>",
+        "mobile": "<:mobile:899161367599263744>",
+        "danger": "<:danger:902027656223146015>",
+        "delete": "<:delete:893700435335065631>",
+        "edit": "<:edit:893715059157635072>",
+        "file": "<:fileupload:902027655862427668>",
+        "rpc": "<:richpresence:899160563907710976>",
+        "left": "<:left:898878732167680010>",
+        "right": "<:right:898878732293529620>",
+        "snipe": "<:sniper:903352115534131300>",
+        "slash": "<:slash:903335448112406608>",
+        "all": "<:checklist:902027655514300427>",
+        "github": "<:github:911981782533017681>",
+        "repo": "<:repo:911982493970862100>"
+    }
 }

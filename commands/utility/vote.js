@@ -1,5 +1,5 @@
 const { Client, CommandInteraction, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
-const { color } = require('../../config.json')
+const { color, emojis } = require('../../config.json')
 
 module.exports = {
     name: 'vote',
@@ -14,7 +14,7 @@ module.exports = {
         .addComponents(
             new MessageButton()
             .setLabel('Vote')
-            .setEmoji('<:topgg:903662068052410450>')
+            .setEmoji(emojis.topgg)
             .setURL('https://top.gg/bot/884249240090607637/vote')
             .setStyle('LINK')
         )

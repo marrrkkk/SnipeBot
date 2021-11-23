@@ -12,10 +12,11 @@ module.exports = {
 
     run: async(client, message, args) => {
         const channel = message.channel;
+
         const botPermissionsIn = message.guild.me.permissionsIn(channel);
         if(!botPermissionsIn.has([
             Permissions.FLAGS.EMBED_LINKS
-        ])) return message.channel.send('Missing Permission: `EMBED_LINKS`')
+        ])) return message.channel.send(`${emojis.cross} Missing Permission: \`EMBED_LINKS\``)
 
         if(!message.guild.me.permissions.has('EMBED_LINKS')) return message.channel.send('Missing Permission: `EMBED_LINKS`')
 

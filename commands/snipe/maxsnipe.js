@@ -1,4 +1,5 @@
 const { Client, Message, MessageEmbed, Permissions, MessageAttachment, MessageActionRow, MessageButton } = require('discord.js')
+const { emojis } = require('../../config.json')
 const moment = require('moment')
 
 module.exports = {
@@ -12,18 +13,23 @@ module.exports = {
      */
 
     run: async(client, message, args) => {
-        if(!message.member.permissions.has("ADMINISTRATOR")) return message.reply("<:cross:893700435616100402> You don't have permission to use this command")
-        if(client.cooldown.has(message.author.id)) return message.channel.send(`<:cross:893700435616100402> **${message.author.username}** you are on cooldown, Please wait a minute`)
+        const err = new MessageEmbed()
+        .setDescription(`${emojis.cross} You don't have permission.`)
+        .setColor('RED')
+
+        if(!message.member.permissions.has("ADMINISTRATOR")) return message.reply({ embeds: [err] })
+        if(client.cooldown.has(message.author.id)) return message.channel.send(`${emojis.cross}**${message.author.username}** you are on cooldown, Please wait a minute`)
         .then(msg => {
             setTimeout(() => {
                 msg.delete()
             }, 5000)
         })
         const channel = message.channel;
+
         const botPermissionsIn = message.guild.me.permissionsIn(channel);
         if(!botPermissionsIn.has([
             Permissions.FLAGS.EMBED_LINKS
-        ])) return message.channel.send('Missing Permission: `EMBED_LINKS`')
+        ])) return message.channel.send(`${emojis.cross} Missing Permission: \`EMBED_LINKS\``)
 
         const snipes = client.snipes.get(message.channel.id)
         if(!snipes) return message.channel.send("There's nothing to snipe")
@@ -43,7 +49,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
         .setTitle('Max Snipe')
-        .setDescription(`<:danger:902027656223146015> Are you sure you want to snipe all ${snipes.length} messages?`)
+        .setDescription(`${emojis.danger} Are you sure you want to snipe all ${snipes.length} messages?`)
         .setColor('#2f3136')
 
         client.cooldown.set(message.author.id) 
@@ -103,7 +109,7 @@ module.exports = {
                             await row.components[1].setDisabled(true)
                             const embed = new MessageEmbed()
                             .setTitle('Cancelled')
-                            .setDescription(`<:danger:902027656223146015> Are you sure you want to snipe all ${snipes.length} messages?`)
+                            .setDescription(`${emojis.danger} Are you sure you want to snipe all ${snipes.length} messages?`)
                             .setColor('RED')
         
                             return await msg.edit({ embeds: [embed], components: [row] })

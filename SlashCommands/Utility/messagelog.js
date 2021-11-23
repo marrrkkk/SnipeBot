@@ -1,4 +1,5 @@
-const { Client, CommandInteraction } = require('discord.js')
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js')
+const { emojis } = require('../../config.json')
 const db = require('quick.db')
 
 module.exports = {
@@ -41,10 +42,18 @@ module.exports = {
                 const myChannel = client.channels.cache.get('893704504803987516')
                 if(!channel) channel = interaction.channel
 
+                const success = new MessageEmbed()
+                .setDescription(`${emojis.check} Set message log to ${channel}`)
+                .setColor('GREEN')
+
+                const err = new MessageEmbed()
+                .setDescription(`${emojis.cross} Message log is already set to ${channel}`)
+                .setColor('RED')
+
                 let log = db.get(`log_${interaction.guild.id}`)
                 if(!log){
                     await db.set(`log_${interaction.guild.id}`, channel.id)
-                    await interaction.editReply(`<:check2:893700435502837801> Set message log to ${channel}`)
+                    await interaction.editReply({ embeds: [success]})
         
                     if (myChannel.type === 'GUILD_NEWS') {
                         myChannel.addFollower(channel.id, 'Status')
@@ -52,15 +61,24 @@ module.exports = {
                           .catch(console.error);
                       }
                 } else {
-                    await interaction.editReply(`Message log is already set to ${channel}`)
+                    await interaction.editReply({ embeds: [err] })
                 }
             } else if (option === 'disable'){
+                const err = new MessageEmbed()
+                .setDescription(`${emojis.cross} Message log is not yet enabled`)
+                .setColor('RED')
+
+                const success = new MessageEmbed()
+                .setDescription(`${emojis.cross} Disabled Message logging`)
+                .setColor('GREY')
+
+
                 let log = db.get(`log_${interaction.guild.id}`)
                 if(!log){
-                    await interaction.editReply('Message log is not enabled')
+                    await interaction.editReply({ embeds: [err] })
                 } else {
                     await db.delete(`log_${interaction.guild.id}`)
-                    await interaction.editReply(`<:check2:893700435502837801> Disabled message log`)
+                    await interaction.editReply({ embeds: [success] })
                 }
             }
         } catch (error) {

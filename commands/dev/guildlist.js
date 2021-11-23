@@ -1,5 +1,5 @@
 const {Client, Message, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
-const { ownerID } = require('../../config.json')
+const { ownerID, emojis, color } = require('../../config.json')
 
 module.exports = {
     name: 'guildlist',
@@ -19,13 +19,13 @@ module.exports = {
         .addComponents(
             new MessageButton()
             .setCustomId('left')
-            .setEmoji('<:left:898878732167680010>')
+            .setEmoji(emojis.left)
             .setStyle('PRIMARY')
         )
         .addComponents(
             new MessageButton()
             .setCustomId('right')
-            .setEmoji('<:right:898878732293529620>')
+            .setEmoji(emojis.right)
             .setStyle('PRIMARY')
         )
 
@@ -44,7 +44,7 @@ module.exports = {
 
       const embed = new MessageEmbed()
         .setAuthor(client.user.tag, client.user.displayAvatarURL({dynamic : true}))
-        .setColor('BLURPLE')
+        .setColor(color)
         .setFooter(`Page - ${page}/${Math.ceil(client.guilds.cache.size / 10)}`)
         .setDescription(description);
 
@@ -74,7 +74,7 @@ module.exports = {
 
             const embed0 = new MessageEmbed()
             .setAuthor(client.user.tag, client.user.displayAvatarURL({dynamic : true}))
-            .setColor('BLURPLE')
+            .setColor(color)
             .setFooter(`Page - ${page}/${Math.ceil(client.guilds.cache.size / 10)}`)
             .setDescription(description1);
 
@@ -99,7 +99,7 @@ module.exports = {
 
             const embed1 = new MessageEmbed()
             .setAuthor(client.user.tag, client.user.displayAvatarURL({dynamic : true}))
-            .setColor('BLURPLE')
+            .setColor(color)
             .setFooter(`Page - ${page}/${Math.ceil(client.guilds.cache.size / 10)}`)
             .setDescription(description2);
 

@@ -1,4 +1,5 @@
 const { Client, Message, MessageEmbed, Permissions } = require('discord.js')
+const { emojis } = require('../../config.json')
 const moment = require('moment')
 
 module.exports = {
@@ -12,10 +13,11 @@ module.exports = {
 
     run: async(client, message, args) => {
         const channel = message.channel;
+
         const botPermissionsIn = message.guild.me.permissionsIn(channel);
         if(!botPermissionsIn.has([
             Permissions.FLAGS.EMBED_LINKS
-        ])) return message.channel.send('Missing Permission: `EMBED_LINKS`')
+        ])) return message.channel.send(`${emojis.cross} Missing Permission: \`EMBED_LINKS\``)
         
         try {
             const user = message.mentions.members.first()

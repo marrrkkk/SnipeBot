@@ -1,4 +1,5 @@
 const { Client, Message, MessageEmbed } = require('discord.js')
+const { emojis } = require('../../config.json')
 const moment = require('moment')
 
 module.exports = {
@@ -29,7 +30,6 @@ module.exports = {
         .setDescription(`<@${user.id}>`)
         .addField('Joined Server', `${moment(member.joinedAt).format("LL")}`, true)
         .addField('Created Account', `${moment(member.user.createdAt).format("LL")}`, true)
-        .addField('Nickname', member.displayName)
         .addField('Roles', `${role}`)
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
         .setColor(member.displayHexColor)
@@ -48,10 +48,10 @@ module.exports = {
             }
 
             let status
-            if(member.presence.status === 'online') status = '<:online:893700435674808350>'
-            if(member.presence.status === 'idle') status = '<:idle:899161368018714634>'
-            if(member.presence.status === 'dnd') status = '<:dnd:899161367674761236>'
-            if(member.presence.status === 'online' && description() === `**Device:** Mobile`) status = '<:mobile:899161367599263744>'
+            if(member.presence.status === 'online') status = emojis.online
+            if(member.presence.status === 'idle') status = emojis.idle
+            if(member.presence.status === 'dnd') status = emojis.dnd
+            if(member.presence.status === 'online' && description() === `**Device:** Mobile`) status = emojis.mobile
 
             embed.addField('Status', `${description()} ${status}`)
 
@@ -73,13 +73,13 @@ module.exports = {
                         embed.addField('Activity', `${activity.state}`)
                     }
                 } else {
-                    embed.addField('Activity', `${type} ${activity.name} <:richpresence:899160563907710976>`)
+                    embed.addField('Activity', `${type} ${activity.name} ${emojis.rpc}`)
                 }
             }
         } else {
             embed.addField('Status', 'Offline')
         }
 
-        message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
+        await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
     }
 }

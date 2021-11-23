@@ -1,4 +1,5 @@
 const { Client, Message, MessageActionRow, MessageButton, MessageEmbed, Permissions } = require('discord.js')
+const { emojis } = require('../../config.json')
 
 module.exports = {
     name: 'clearsnipe',
@@ -12,11 +13,17 @@ module.exports = {
 
     run: async(client, message, args) => {
         const channel = message.channel;
+
+        const err = new MessageEmbed()
+        .setDescription(`${emojis.cross} You don't have permission.`)
+        .setColor('RED')
+
         const botPermissionsIn = message.guild.me.permissionsIn(channel);
         if(!botPermissionsIn.has([
             Permissions.FLAGS.EMBED_LINKS
-        ])) return message.channel.send('Missing Permission: `EMBED_LINKS`')
-        if(!message.member.permissions.has('ADMINISTRATOR')) return
+        ])) return message.channel.send(`${emojis.cross} Missing Permission: \`EMBED_LINKS\``)  
+        
+        if(!message.member.permissions.has('ADMINISTRATOR')) return await message.channel.send({ embeds: [err] })
         
         const row = new MessageActionRow()
         .addComponents(
@@ -59,7 +66,6 @@ module.exports = {
                         await client.psnipes.delete(message.channel.id)
                         await client.ebsnipes.delete(message.channel.id)
                         await client.usnipes.delete(message.channel.id)
-                        await client.uesnipes.delete(message.channel.id)
                         await client.rsnipes.delete(message.channel.id)
                         await client.fsnipes.delete(message.channel.id)
                         await client.emsnipes.delete(message.channel.id)

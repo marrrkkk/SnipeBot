@@ -1,6 +1,6 @@
 const { Client, CommandInteraction, MessageActionRow, MessageSelectMenu, MessageEmbed } = require('discord.js')
 const db = require('quick.db')
-const { color } = require('../../config.json')
+const { color, emojis } = require('../../config.json')
 
 module.exports = {
     name: 'help',
@@ -194,7 +194,7 @@ module.exports = {
                     {
                         label: 'Snipe',
                         value: 'snipe',
-                        emoji: '<:sniper:903352115534131300>'
+                        emoji: emojis.snipe
                     },
                     {
                         label: 'Utility',
@@ -209,12 +209,12 @@ module.exports = {
                     {
                         label: 'Slash',
                         value: 'slash',
-                        emoji: '<:slash:903335448112406608>'
+                        emoji: emojis.slash
                     },
                     {
                         label: 'All Commands',
                         value: 'all',
-                        emoji: '<:checklist:902027655514300427>'
+                        emoji: emojis.all
                     }
                 ]),
             )

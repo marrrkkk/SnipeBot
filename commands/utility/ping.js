@@ -1,4 +1,5 @@
 const { Client, Message, MessageEmbed } = require('discord.js')
+const { emojis } = require('../../config.json')
 module.exports = {
     name: 'ping',
 
@@ -16,7 +17,7 @@ module.exports = {
             await message.channel.send({ embeds: [embed] }).then(msg => {
                 const ping = msg.createdTimestamp - message.createdTimestamp
                 const pong = new MessageEmbed()
-                .setDescription(`<:comment:902027656097300491> Bot Latency - \`${ping}ms\`\n<:globe:902027655057141811> API Latency - \`${client.ws.ping}ms\``)
+                .setDescription(`${emojis.comment} Bot Latency - \`${ping}ms\`\n${emojis.globe} API Latency - \`${client.ws.ping}ms\``)
                 .setColor('#2f3136')
                 
                 msg.edit({ embeds: [pong] })

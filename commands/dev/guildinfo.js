@@ -1,5 +1,5 @@
 const { Client, Message, MessageEmbed } = require('discord.js')
-const { ownerID } = require('../../config.json')
+const { ownerID, emojis } = require('../../config.json')
 
 module.exports = {
     name: 'guildinfo',
@@ -16,7 +16,12 @@ module.exports = {
         try {
             let guild = client.guilds.cache.get(args[0]) || client.guilds.cache.find(g => g.name.toLowerCase() === args.join(' '))
             if(!args[0]) guild = message.guild
-            if(!guild) return await message.channel.send(`<:cross:893700435616100402> Unable to find server "${args[0]}"`)
+
+            const err = new MessageEmbed()
+            .setDescription(`${emojis.cross} Unable to find server "**${args[0]}**"`)
+            .setColor('RED')
+
+            if(!guild) return await message.channel.send({ embeds: [err] })
 
             const owner = guild.members.cache.get(guild.ownerId)
 
@@ -35,12 +40,12 @@ module.exports = {
             .setFooter(`ID: ${guild.id}`)
             .setColor('#2f3136')
 
-            const emojis = new MessageEmbed()
+            const emoji = new MessageEmbed()
             .setTitle(`Emojis[${guild.emojis.cache.size}]`)
             .setDescription(`${guild.emojis.cache.map(e => e).join(" ")}`)
             .setColor('#2f3136')
 
-            await message.channel.send({ embeds: [embed, emojis] })
+            await message.channel.send({ embeds: [embed, emoji] })
         } catch (error) {
             console.log(error)
         }

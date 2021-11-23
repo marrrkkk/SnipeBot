@@ -1,5 +1,6 @@
-const { Client, CommandInteraction, MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Message } = require('discord.js')
+const { Client, CommandInteraction, MessageEmbed, MessageAttachment, MessageActionRow, MessageButton } = require('discord.js')
 const moment = require('moment')
+const { emojis } = require('../../config.json')
 
 module.exports = {
     name: 'snipe',
@@ -176,6 +177,10 @@ module.exports = {
         try {
             await interaction.deferReply({ ephemeral: false }).catch(() => {});
             const option = interaction.options.getSubcommand()
+
+            const err = new MessageEmbed()
+            .setDescription(`${emojis.cross} You don't have permission.`)
+            .setColor('RED')
 
             if(option === 'delete'){
 
@@ -441,8 +446,8 @@ module.exports = {
                 //Max
             } else if (option === 'max'){
                 const member = interaction.guild.members.cache.get(interaction.user.id)
-                if(!member.permissions.has('ADMINISTRATOR')) return interaction.editReply("<:cross:893700435616100402> You don't have permission to use this command")
-                if(client.cooldown.has(interaction.user.id)) return interaction.editReply(`<:cross:893700435616100402> **${interaction.user.username}** you are on cooldown, Please wait a minute`)
+                if(!member.permissions.has('ADMINISTRATOR')) return interaction.editReply({ embeds: [err] })
+                if(client.cooldown.has(interaction.user.id)) return interaction.editReply(`${emojis.cross} **${interaction.user.username}** you are on cooldown, Please wait a minute`)
                 .then(msg => {
                     setTimeout(() => {
                         msg.delete()
@@ -466,7 +471,7 @@ module.exports = {
         
                 const embed = new MessageEmbed()
                 .setTitle('Max Snipe')
-                .setDescription(`<:danger:902027656223146015> Are you sure you want to snipe all ${snipes.length} messages?`)
+                .setDescription(`${emojis.danger} Are you sure you want to snipe all ${snipes.length} messages?`)
                 .setColor('#2f3136')
     
                 client.cooldown.set(interaction.user.id) 
@@ -521,11 +526,12 @@ module.exports = {
                             await msg.edit({ components: [row] })
                         } else if (b.customId === 'cancel'){
                             client.cooldown.delete(interaction.user.id)
-                            row.components[0].setDisabled(true)
-                            row.components[1].setDisabled(true)
+                            await row.components[0].setDisabled(true)
+                            await row.components[1].setDisabled(true)
                             const embed = new MessageEmbed()
-                            .setTitle('Max Snipe')
-                            .setDescription('Cancelled.')
+                            .setTitle('Cancelled')
+                            .setDescription(`${emojis.danger} Are you sure you want to snipe all ${snipes.length} messages?`)
+                            .setColor('RED')
         
                             await msg.edit({ embeds: [embed], components: [row] })
                         }
@@ -536,19 +542,16 @@ module.exports = {
                 })
     
                 collector.on('end', async () => {
-                    row.components[0].setDisabled(true)
-                    row.components[1].setDisabled(true)
-        
-                    const embed = new MessageEmbed()
-                    .setTitle('Max Snipe')
-                    .setDescription(`Command Timeout, Please try again`)
-                    await msg.edit({ embeds: [embed], components: [row] })
+                    await row.components[0].setDisabled(true)
+                    await row.components[1].setDisabled(true)
+                    
+                    await msg.edit({ components: [row] })
                 })
 
                 //Clear
             } else if (option === 'clear'){
                 const member = interaction.guild.members.cache.get(interaction.user.id)
-                if(!member.permissions.has('ADMINISTRATOR')) return interaction.editReply("<:cross:893700435616100402> You don't have permission to use this command")
+                if(!member.permissions.has('ADMINISTRATOR')) return interaction.editReply({ embeds: [err] })
                 const channel = interaction.channel
                 const row = new MessageActionRow()
                 .addComponents(
@@ -590,7 +593,6 @@ module.exports = {
                         await client.psnipes.delete(interaction.channel.id)
                         await client.ebsnipes.delete(interaction.channel.id)
                         await client.usnipes.delete(interaction.channel.id)
-                        await client.uesnipes.delete(interaction.channel.id)
                         await client.rsnipes.delete(interaction.channel.id)
     
                         await msg.edit({ embeds: [confirm], components: [row] })
@@ -610,7 +612,7 @@ module.exports = {
                 })
             } else if(option === 'remove'){
                 const member = interaction.guild.members.cache.get(interaction.user.id)
-                if(!member.permissions.has('MANAGE_MESSAGES')) return interaction.editReply("<:cross:893700435616100402> You don't have permission to use this command")
+                if(!member.permissions.has('MANAGE_MESSAGES')) return interaction.editReply({ embeds: [err] })
                 const snipes = client.snipes.get(interaction.channel.id)
                 if(!snipes) return await interaction.editReply("There's nothing to remove")
                 let num = interaction.options.getInteger("position")
@@ -620,7 +622,7 @@ module.exports = {
                 await interaction.editReply('Snipe removed.')
             } else if(option === 'remove-file'){
                 const member = interaction.guild.members.cache.get(interaction.user.id)
-                if(!member.permissions.has('MANAGE_MESSAGES')) return interaction.editReply("<:cross:893700435616100402> You don't have permission to use this command")
+                if(!member.permissions.has('MANAGE_MESSAGES')) return interaction.editReply({ embeds: [err] })
                 const fsnipes = client.fsnipes.get(interaction.channel.id)
                 if(!fsnipes) return await interaction.editReply("There's nothing to remove")
                 let num = interaction.options.getInteger("position")
@@ -630,7 +632,7 @@ module.exports = {
                 await interaction.editReply('Snipe removed.')
             } else if(option === 'remove-edit'){
                 const member = interaction.guild.members.cache.get(interaction.user.id)
-                if(!member.permissions.has('MANAGE_MESSAGES')) return interaction.editReply("<:cross:893700435616100402> You don't have permission to use this command")
+                if(!member.permissions.has('MANAGE_MESSAGES')) return interaction.editReply({ embeds: [err] })
                 if(!esnipes) return await interaction.editReply("There's nothing to remove")
                 let num = interaction.options.getInteger("position")
                 if(!num) num = 1
