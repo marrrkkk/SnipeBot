@@ -11,7 +11,7 @@ client.on('guildCreate', async guild => {
         .setTitle('New Guild Added')
         .setThumbnail(guild.iconURL())
         .addField('Name', `${guild.name}`)
-        .addField('Owner', `${owner.user.tag}`)
+        .addField('Owner', `[${owner.user.tag}](https://discord.com/users/${owner})`)
         .addField('STATS', `**Users:** ${guild.members.cache.filter(m => !m.user.bot).size}\n**Bots:** ${guild.members.cache.filter(m => m.user.bot).size}\n**Total Members:** ${guild.memberCount}\n**Total Server:** ${client.guilds.cache.size}`)
         .setColor('GREEN')
         .setFooter(`ID: ${guild.id}`)
