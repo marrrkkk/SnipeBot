@@ -495,7 +495,7 @@ module.exports = {
                                     .setDescription('This snipe has been removed')
                                     .setColor('#2f3136')
         
-                                    await interaction.channel.send({ embeds: [embed] })
+                                    await interaction.channel.send({ embeds: [embed] }).catch(e => console.log(e))
                                 } else {
                                     const { msg, time, img, url, type } = target
                     
@@ -507,7 +507,7 @@ module.exports = {
                                     .setColor('RANDOM')
 
                                     if(msg.mentions.repliedUser){
-                                        embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
+                                        embed.addField('Replied to:', `${msg.mentions.repliedUser}`).catch(e => console.log(e))
                                     }
                             
                                     if(!url){
@@ -533,7 +533,7 @@ module.exports = {
                             .setDescription(`${emojis.danger} Are you sure you want to snipe all ${snipes.length} messages?`)
                             .setColor('RED')
         
-                            await msg.edit({ embeds: [embed], components: [row] })
+                            await msg.edit({ embeds: [embed], components: [row] }).catch(e => console.log(e))
                         }
         
                     } else {
@@ -545,7 +545,7 @@ module.exports = {
                     await row.components[0].setDisabled(true)
                     await row.components[1].setDisabled(true)
                     
-                    await msg.edit({ components: [row] })
+                    await msg.edit({ components: [row] }).catch(e => console.log(e))
                 })
 
                 //Clear
@@ -575,7 +575,7 @@ module.exports = {
                 const collector = msg.createMessageComponentCollector({ componentType: 'BUTTON'})
     
                 collector.on('collect', async b => {
-                    b.deferUpdate()
+                    await b.deferUpdate()
                     if(b.user.id !== interaction.user.id) return
                     if(b.customId === 'confirm'){
                         row.components[0].setDisabled(true)
@@ -595,7 +595,7 @@ module.exports = {
                         await client.usnipes.delete(interaction.channel.id)
                         await client.rsnipes.delete(interaction.channel.id)
     
-                        await msg.edit({ embeds: [confirm], components: [row] })
+                        await msg.edit({ embeds: [confirm], components: [row] }).catch(e => console.log(e))
                     }
     
                     if(b.customId === 'cancel'){
@@ -607,7 +607,7 @@ module.exports = {
                         .setDescription(`Cancelled.`)
                         .setColor('GREY')
     
-                        await msg.edit({ embeds: [cancel], components: [row] })
+                        await msg.edit({ embeds: [cancel], components: [row] }).catch(e => console.log(e))
                     }
                 })
             } else if(option === 'remove'){

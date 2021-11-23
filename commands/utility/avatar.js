@@ -1,4 +1,5 @@
 const { Client, Message, MessageEmbed } = require('discord.js')
+const { emojis } = require('../../config.json')
 
 module.exports = {
     name: 'avatar',
@@ -12,17 +13,22 @@ module.exports = {
 
     run: async(client, message, args) => {
         try {
-            let user = message.mentions.users.first() || message.guild.members.cache.get(args[0]) || 
+            let Member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) ||
             message.guild.members.cache.find(m => m.user.username === args.join(' ')) || message.guild.members.cache.find(m => m.user.username.toLowerCase() === args.join(' ')) ||
             message.guild.members.cache.find(m => m.displayName === args.join(' ')) || message.guild.members.cache.find(m => m.displayName.toLowerCase() === args.join(' '))
-            if(!args[0]) user = message.member
-            if(!user) return message.channel.send(`Unable find member "${args.join(' ')}"`)
+            if(!args[0]) Member = message.member
+
+            const err = new MessageEmbed()
+            .setDescription(`${emojis.cross} Could't find member "**${args.join(' ')}**"`)
+            .setColor('RED')
+            
+            if(!Member) return message.channel.send({ embeds: [err] })
     
             const embed = new MessageEmbed()
-            .setAuthor(user.user.tag, user.user.displayAvatarURL())
-            .setImage(user.user.displayAvatarURL({ dynamic: true, size: 512}))
-            .setColor(user.displayHexColor)
-            .setTimestamp()
+            .setAuthor(Member.user.tag, Member.user.displayAvatarURL())
+            .setDescription(`[Avatar](${Member.displayAvatarURL()})`)
+            .setImage(Member.user.displayAvatarURL({dynamic: true, size: 512}))
+            .setColor(Member.displayHexColor)
     
             await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
         } catch (error) {
