@@ -507,7 +507,7 @@ module.exports = {
                                     .setColor('RANDOM')
 
                                     if(msg.mentions.repliedUser){
-                                        embed.addField('Replied to:', `${msg.mentions.repliedUser}`).catch(e => console.log(e))
+                                        embed.addField('Replied to:', `${msg.mentions.repliedUser}`)
                                     }
                             
                                     if(!url){
