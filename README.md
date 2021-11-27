@@ -1,3 +1,7 @@
+![](https://img.shields.io/github/stars/marrrkkk/SnipeBot?style=social)<br>
+![](https://img.shields.io/github/forks/marrrkkk/SnipeBot?style=social)<br>
+![](https://img.shields.io/github/watchers/marrrkkk/SnipeBot?style=social)
+
 # About
 [Snipe](https://discord.com/oauth2/authorize?client_id=884249240090607637&scope=applications.commands+bot&permissions=8) is an advanced Discord SnipeBot that can retrieve upto 20 deleted/edited messages.
 - Snipe file/images
