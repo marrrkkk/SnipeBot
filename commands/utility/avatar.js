@@ -26,7 +26,7 @@ module.exports = {
     
             const embed = new MessageEmbed()
             .setAuthor(Member.user.tag, Member.user.displayAvatarURL())
-            .setDescription(`[Avatar](${Member.displayAvatarURL()})`)
+            .setDescription(`[Avatar](${Member.user.displayAvatarURL()})`)
             .setImage(Member.user.displayAvatarURL({dynamic: true, size: 512}))
             .setColor(Member.displayHexColor)
     

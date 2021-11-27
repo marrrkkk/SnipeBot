@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.24.0",
     "discord.js": "^13.1.0",
     "glob": "^7.1.7",
     "moment": "^2.29.1",
