@@ -15,6 +15,8 @@ client.on('messageDelete', async message => {
             img: message.attachments.first()?.proxyURL || null,
             url: message.attachments.first()?.url || null,
             type: message.attachments.first()?.contentType || null,
+            stkname: message.stickers.first()?.name || null,
+            stk: message.stickers.first()?.url || null,
             time: Date.now()
         })
     
@@ -77,6 +79,8 @@ client.on('messageDelete', async message => {
         usnipes.unshift({
             msg: message,
             img: message.attachments.first()?.proxyURL || null,
+            stkname: message.stickers.first()?.name || null,
+            stk: message.stickers.first()?.url || null,
             time: Date.now()
         })
     
@@ -135,11 +139,14 @@ client.on('messageDelete', async message => {
         const channel = db.get(`log_${message.guild.id}`)
         if(channel === null) return
 
+        const stk = message.stickers.first()?.url || null
+        const stkname = message.stickers.first()?.name || null
+
         const embed = new MessageEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL())
         .setTitle(`${emojis.delete} Message Deleted`)
         .setDescription(`**Author:** ${message.author}\n\n**Channel:** ${message.channel}`)
-        .addField('Content', `${message.content || '[no text]'}`)
+        .addField('Content', `${message.content || `[${stkname}](${stk})`}` || `[no content]`)
         .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
         .setFooter(`User ID: ${message.author.id}`)
         .setTimestamp()
