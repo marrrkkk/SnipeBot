@@ -2,7 +2,9 @@ const client = require('../index')
 
 const db = require('quick.db')
 
-const { Permissions } = require('discord.js')
+const { Permissions, MessageEmbed } = require('discord.js')
+
+const { color } = require('../config.json')
 
 client.on("messageCreate", async (message, guild) => {
     if(message.author.bot) return;
@@ -17,8 +19,16 @@ client.on("messageCreate", async (message, guild) => {
         prefix = prefixes
     }
 
+    const embed = new MessageEmbed()
+    .setAuthor(`${client.user.tag}`, client.user.displayAvatarURL())
+    .setDescription(`My prefix for this server is **${prefix}**`)
+    .setFooter('To change prefix do "s!config prefix <prefix>"')
+    .setColor(color)
+
     if(message.content === `<@!${client.user.id}> prefix`){
-        message.channel.send(`My prefix for this server is **${prefix}**`)
+        message.channel.send({ embeds: [embed] })
+    } else if(message.content === `<@${client.user.id}> prefix`){
+        message.channel.send({ embeds: [embed] })
     }
 
     if(message.content.startsWith(prefix)) {
