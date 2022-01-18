@@ -33,17 +33,10 @@ module.exports = {
     
             const usersnipe = new MessageEmbed()
             .setAuthor('Snipe Commands', client.user.displayAvatarURL())
-            .addField('__usersnipe__', '```Retrieve recently deleted messages from the mentioned member```')
-            .addField('Usage', `${prefix}us \`@user\`\n${prefix}usnipe \`@user\`\n${prefix}usersnipe \`@user\` 4`, true)
-            .addField('Aliases', '*us*, *usnipe*', true)
+            .addField('__aim__', '```Retrieve recently deleted messages from the mentioned member```')
+            .addField('Usage', `${prefix}aim \`@user\`\n${prefix}aim \`@user\` 4`, true)
             .setColor(color)
     
-            const useresnipe = new MessageEmbed()
-            .setAuthor('Snipe Commands', client.user.displayAvatarURL())
-            .addField('__usereditsnipe__', '```Retrieve recently edited messages from the mentioned member```')
-            .addField('Usage', `${prefix}ues \`@user\`\n${prefix}uesnipe \`@user\`\n${prefix}usereditsnipe \`@user\` 2`, true)
-            .addField('Aliases', '*ues*, *uesnipe*', true)
-            .setColor(color)
     
             const botsnipe = new MessageEmbed()
             .setAuthor('Snipe Commands', client.user.displayAvatarURL())
@@ -235,15 +228,11 @@ module.exports = {
                         value: 'es'
                     },
                     {
-                        label: 'usersnipe',
+                        label: 'aim',
                         description: 'Retrieve recently deleted messages from the mentioned member',
                         value: 'us'
                     },
-                    {
-                        label: 'usereditsnipe',
-                        description: 'Retrieve recently edited messages from the mentioned member',
-                        value: 'ues'
-                    },
+
                     {
                         label: 'botsnipe',
                         description: 'Retrieve recently deleted messages by the bots incuding embeds',
@@ -294,7 +283,7 @@ module.exports = {
     
             const embed = new MessageEmbed()
             .setAuthor('All Commands', client.user.displayAvatarURL())
-            .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
+            .addField('__Snipe Commands__', '*snipe, esnipe, aim, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
             .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
             .addField('__Config Commands__', '*config log, config prefix, moderation*')
             .setColor(color)
@@ -327,14 +316,9 @@ module.exports = {
                                         value: 'es'
                                     },
                                     {
-                                        label: 'usersnipe',
+                                        label: 'aim',
                                         description: 'Retrieve recently deleted messages from the mentioned member',
                                         value: 'us'
-                                    },
-                                    {
-                                        label: 'usereditsnipe',
-                                        description: 'Retrieve recently edited messages from the mentioned member',
-                                        value: 'ues'
                                     },
                                     {
                                         label: 'botsnipe',
@@ -386,7 +370,7 @@ module.exports = {
                     
                             const embed = new MessageEmbed()
                             .setAuthor('Help Menu', client.user.displayAvatarURL())
-                            .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
+                            .addField('__Snipe Commands__', '*snipe, esnipe, aim, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
                             .setColor(color)
                     
                             let msg4 = await msg.edit({ embeds: [embed], components: [row, row5] })
@@ -419,8 +403,6 @@ module.exports = {
                                         msg4.edit({ embeds: [max] })
                                     } else if(value === 'us'){
                                         msg4.edit({ embeds: [usersnipe]})
-                                    } else if(value === 'ues'){
-                                        msg4.edit({ embeds: [useresnipe] })
                                     }
                                 }
                             })
@@ -561,7 +543,7 @@ module.exports = {
                         row.components[0].setPlaceholder('Slash')
                         const embed = new MessageEmbed()
                         .setAuthor('Help Menu', client.user.displayAvatarURL())
-                        .addField('__Slash Commands__', '*snipe delete, snipe edit, snipe user-delete, snipe user-edit, snipe ping, snipe file, snipe react, snipe embed, stats, about, avatar, help, invite, whois*')
+                        .addField('__Slash Commands__', '*snipe delete, snipe edit, snipe aim, snipe ping, snipe file, snipe react, snipe embed, stats, about, avatar, help, invite, whois*')
                         .setColor(color)
 
                         await msg.edit({ embeds: [embed], components: [row] })
@@ -571,7 +553,7 @@ module.exports = {
                             row.components[0].setPlaceholder('All Commands')
                             const embed = new MessageEmbed()
                             .setAuthor('All Commands', client.user.displayAvatarURL())
-                            .addField('__Snipe Commands__', '*snipe, esnipe, usersnipe, usereditsnipe, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
+                            .addField('__Snipe Commands__', '*snipe, esnipe, aim, botsnipe, boteditsnipe, pingsnipe, filesnipe, embedsnipe, reactsnipe, removesnipe, clearsnipe, maxsnipe*')
                             .addField('__Utility Commands__', '*about, avatar, help, invite, ping, purge, vote, whois*')
                             .addField('__Config Commands__', '*config log, config prefix, moderation*')
                             .setColor(color)
@@ -605,8 +587,6 @@ module.exports = {
                             msg.edit({ embeds: [max] })
                         } else if(value === 'us'){
                             msg.edit({ embeds: [usersnipe]})
-                        } else if(value === 'ues'){
-                            msg.edit({ embeds: [useresnipe] })
                         }
                     }
                 }
