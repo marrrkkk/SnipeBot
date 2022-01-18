@@ -37,11 +37,11 @@ module.exports = {
                 return await message.channel.send({ embeds: [embed] })
             }
     
-            const { msg, time, img } = target
+            const { msg, time, img, stk, stkname } = target
     
             const embed = new MessageEmbed()
             .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
-            .setDescription(msg.content || '[no text]')
+            .setDescription(`${msg.content || `[${stkname}](${stk})`}` || '[no text]')
             .addField('Channel:', `${msg.channel}`)
             .setImage(img)
             .setFooter(`${moment(time).fromNow()} | ${usnipe + 1}/${usnipes.length}`)

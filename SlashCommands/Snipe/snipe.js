@@ -203,12 +203,12 @@ module.exports = {
                     return await interaction.editReply({ embeds: [embed] }).catch(e => console.log(e))
                 }
         
-                const { msg, time, url, img, type } = target
+                const { msg, time, url, img, type, stkname, stk } = target
         
                 if(!url){
                     const embed = new MessageEmbed()
                     .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
-                    .setDescription(`${msg.content}` || '[no content]')
+                    .setDescription(`${msg.content || `[${stkname}](${stk})`}` || '[no content]')
                     .setImage(img)
                     .setFooter(`${moment(time).fromNow()} | ${snipe + 1}/${snipes.length}`)
                     .setColor('RANDOM')

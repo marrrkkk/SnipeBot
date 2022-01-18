@@ -78,11 +78,11 @@ module.exports = {
         
                                     await message.channel.send({ embeds: [embed] })
                                 } else {
-                                    const { msg, time, img, url, type } = target
+                                    const { msg, time, img, url, type, stkname, stk } = target
                     
                                     const embed = new MessageEmbed()
                                     .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
-                                    .setDescription(msg.content || '[file]')
+                                    .setDescription(`${msg.content || `[${stkname}](${stk})`}` || '[file]')
                                     .setImage(img)
                                     .setFooter(`${moment(time).fromNow()} | ${i + 1}/${snipes.length}`)
                                     .setColor('RANDOM')
