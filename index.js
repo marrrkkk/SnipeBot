@@ -27,4 +27,4 @@ require("./handler")(client);
 
 keepAlive();
 
-client.login(client.config.token);
+client.login(process.env.token);
