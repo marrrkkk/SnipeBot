@@ -5,6 +5,8 @@ const client = new Client({
 });
 module.exports = client;
 
+const keepAlive = require('./server.js')
+
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.config = require("./config.json");
@@ -22,5 +24,7 @@ client.rsnipes = new Collection()
 client.cooldown = new Collection()
 
 require("./handler")(client);
+
+keepAlive();
 
 client.login(client.config.token);
