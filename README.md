@@ -22,5 +22,5 @@
 - Node.js
 - Visual Studio Code or other Code Editor
 
-## Support
+## Need help?
 If you have any question just join the [Support Server](https://discord.gg/Pw9FF6KYaH)
