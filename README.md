@@ -1,3 +1,5 @@
+<h1 align=center>⚠️ UPDATE COMING SOON ⚠️</h1>
+
 ![](https://img.shields.io/github/stars/marrrkkk/SnipeBot?style=social)<br>
 ![](https://img.shields.io/github/forks/marrrkkk/SnipeBot?style=social)<br>
 ![](https://img.shields.io/github/watchers/marrrkkk/SnipeBot?style=social)
