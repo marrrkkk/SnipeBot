@@ -9,12 +9,12 @@
     "twemoji-parser": "^13.1.0"
   },
   "name": "snipe",
-  "version": "1.0.0",
+  "version": "1.7.4",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mark",
-  "license": "ISC",
+  "license": "MIT",
   "description": ""
 }
