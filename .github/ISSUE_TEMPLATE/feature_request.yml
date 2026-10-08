@@ -1,0 +1,25 @@
+name: Feature request
+description: Propose an idea for SnipeBot
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Self-hosting use case
+      description: What problem does this solve for someone running their own bot?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Rough behavior. API/permissions/storage impact if known.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and specs/ first
+          required: true
+        - label: I understand substantial features need a spec before code (see CONTRIBUTING.md)
+          required: true

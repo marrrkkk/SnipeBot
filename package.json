@@ -4,6 +4,23 @@
   "description": "Self-hosted Discord message archive, history, recovery, and inspection system",
   "type": "module",
   "license": "MIT",
+  "author": "marrrkkk",
+  "homepage": "https://github.com/marrrkkk/SnipeBot",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marrrkkk/SnipeBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marrrkkk/SnipeBot/issues"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discord.js",
+    "self-hosted",
+    "sqlite",
+    "message-archive"
+  ],
   "engines": {
     "node": ">=24.17.0"
   },
