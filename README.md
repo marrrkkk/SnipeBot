@@ -1,5 +1,8 @@
 # SnipeBot
 
+[![ci](https://github.com/marrrkkk/SnipeBot/actions/workflows/ci.yml/badge.svg)](https://github.com/marrrkkk/SnipeBot/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 Self-hosted Discord message archive, recovery, and inspection bot.
 You run it, you own the data: SQLite + a local media folder — no SaaS,
 no shared database, no central server. Its headline feature is
@@ -178,7 +181,19 @@ This bot stores other people's messages — treat the archive as
 sensitive. Read [docs/security.md](docs/security.md) before inviting
 it anywhere: token hygiene (`chmod 600 .env`, umask-restricted files),
 least privilege, read-time visibility enforcement, retention semantics,
-and encrypted off-host backups.
+and encrypted off-host backups. To report a vulnerability privately,
+see [SECURITY.md](SECURITY.md).
+
+## Contributing
+
+Contributions welcome — start with [CONTRIBUTING.md](CONTRIBUTING.md)
+(and [AGENTS.md](AGENTS.md) for the operating rules). Bug reports and
+feature ideas: [open an issue](https://github.com/marrrkkk/SnipeBot/issues).
+Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+[MIT](LICENSE) — you run it, you own the data.
 
 ## Roadmap & history
 
