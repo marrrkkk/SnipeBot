@@ -1,0 +1,46 @@
+{
+  "name": "snipebot",
+  "version": "1.0.0",
+  "description": "Self-hosted Discord message archive, history, recovery, and inspection system",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.17.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "deploy:commands": "tsx src/scripts/deploy-commands.ts",
+    "load:test": "tsx src/scripts/load-test.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/scripts/migrate.ts",
+    "db:push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "discord.js": "^14.27.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.45.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^24.0.0",
+    "drizzle-kit": "^0.31.1",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.20.0",
+    "vitest": "^3.0.5"
+  }
+}

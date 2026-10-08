@@ -1,0 +1,15 @@
+services:
+  snipebot:
+    # Self-hosted single process: gateway + SQLite + local media.
+    # No ports: the bot makes outbound connections only.
+    build: .
+    container_name: snipebot
+    restart: unless-stopped
+    # Secrets and config come from the environment, never the image.
+    # See .env.example for every supported variable.
+    env_file:
+      - .env
+    volumes:
+      # The database, WAL files and archived media persist here.
+      # Back this directory up; see docs/deployment.md.
+      - ./data:/app/data
